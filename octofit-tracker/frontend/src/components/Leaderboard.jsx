@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 import { CollectionState, PageHeader } from './CollectionState.jsx'
 
+// Codespaces endpoint pattern: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/
+
 export default function Leaderboard() {
   const [entries, setEntries] = useState([])
   const [state, setState] = useState({ loading: true, error: '' })
