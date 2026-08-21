@@ -4,7 +4,7 @@ The presentation tier uses React 19, Vite, Bootstrap, and `react-router-dom`.
 
 ## Environment
 
-Define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.local` when calling the deployed Codespaces API:
+Set `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env` when calling the deployed Codespaces API:
 
 ```dotenv
 VITE_CODESPACE_NAME=your-codespace-name

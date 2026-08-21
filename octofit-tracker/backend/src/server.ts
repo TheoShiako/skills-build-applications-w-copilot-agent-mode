@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import db from './config/database.js';
 import { User, Team, Activity, LeaderboardEntry, Workout } from './models/index.js';
 
@@ -8,7 +9,16 @@ const codespaceName = process.env.CODESPACE_NAME;
 const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${port}`;
+const frontendOrigin = codespaceName
+  ? `https://${codespaceName}-5173.app.github.dev`
+  : 'http://localhost:5173';
+const allowedOrigins = [
+  frontendOrigin,
+  ...(process.env.FRONTEND_URL?.split(',').map((origin) => origin.trim()).filter(Boolean) || []),
+];
+const codespacesFrontendOrigin = /^https:\/\/[a-z0-9-]+-5173\.app\.github\.dev$/;
 
+app.use(cors({ origin: [...allowedOrigins, codespacesFrontendOrigin] }));
 app.use(express.json());
 
 app.get('/api/health', async (_request, response) => {
